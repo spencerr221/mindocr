@@ -1,6 +1,6 @@
 system:
   mode: 0 # 0 for graph mode, 1 for pynative mode in MindSpore
-  distribute: False
+  distribute: True
   amp_level: 'O0'
   seed: 42
   val_while_train: True
@@ -40,7 +40,9 @@ model:
   neck:
     name: Im2Seq
   head:
-    name: CTCHead 
+    name: CTCHead
+    weight_init: crnn_customised
+    bias_init: crnn_customised 
     out_channels: *num_classes
     
 postprocess:
