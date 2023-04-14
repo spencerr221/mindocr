@@ -2,8 +2,9 @@
 Model training
 '''
 import sys
-sys.path.append('./mindcv/')
-sys.path.append('.')
+sys.path.append('/home/group1/lby_spencer/mindocr/mindcv')
+sys.path.append('..')
+sys.path.append('/home/group1/lby_spencer/mindocr')
 import os
 import yaml
 import argparse
@@ -31,7 +32,7 @@ from mindocr.utils.seed import set_seed
 # sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 def main(cfg):
     # env init
-    ms.set_context(mode=cfg.system.mode)
+    ms.set_context(mode=cfg.system.mode, device_id=7)
     if cfg.system.distribute:
         init()
         device_num = get_group_size()
@@ -58,7 +59,6 @@ def main(cfg):
             shard_id=rank_id,
             is_train=True)
     num_batches = loader_train.get_dataset_size()
-
     loader_eval = None
     # TODO: now only use device 0 to perform evaluation
     if cfg.system.val_while_train and is_main_device:

@@ -530,7 +530,7 @@ class SVTRNet(nn.Cell):
         ])
         self.last_stage = last_stage
         if last_stage:
-            self.avg_pool = nn.AdaptiveAvgPool2d((1, out_char_num))
+            # self.avg_pool = nn.AdaptiveAvgPool2d((1, out_char_num))   TODO: Ascend not support
             self.last_conv = nn.Conv2d(
                 in_channels=embed_dim[2],
                 out_channels=self.out_channels,
@@ -599,8 +599,10 @@ class SVTRNet(nn.Cell):
                 h = self.HW[0] // 4
             else:
                 h = self.HW[0]
-            x = self.avg_pool(
-                x.transpose([0, 2, 1]).reshape([x.shape[0], self.embed_dim[2], h, self.HW[1]]))
+            x_mid = x.transpose([0, 2, 1]).reshape([x.shape[0], self.embed_dim[2], h, self.HW[1]])    #TODO: adaptive2d_not_support_in_ascend
+            # x = self.avg_pool(
+            #     x.transpose([0, 2, 1]).reshape([x.shape[0], self.embed_dim[2], h, self.HW[1]]))   
+            x = ops.mean(x_mid, 2, keep_dims=True)
             x = self.last_conv(x)
             x = self.hardswish(x)
             x = self.dropout(x)

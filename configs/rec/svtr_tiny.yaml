@@ -5,7 +5,7 @@ system:
   seed: 42
   val_while_train: True
   drop_overflow_update: False
-  ckpt_save_dir: '/home/mindocr/lby_spencer/mindocr/mindocr/output/rec/3003version'
+  ckpt_save_dir: '/home/group1/lby_spencer/svtr_mindspore/output/rec/3103vrsion'
 
 common:
   character_dict_path: &character_dict_path  #mindocr/utils/dict/en_dict.txt
@@ -73,14 +73,14 @@ optimizer:
   filter_bias_and_bn: True
   momentum: 0.9
   weight_decay: 0.05
-  loss_scale: 256
+  loss_scale: 512
   #use_nesterov: True
   
 train:
   dataset_sink_mode: False
   dataset:
     type: LMDBDataset
-    data_dir: /home/mindocr/lby_spencer/svtr_dataset/training
+    data_dir: /home/group1/katekong/datasets/data_lmdb_release/training
     # label_files: /data/ocr_datasets/ic15/word_recognition/rec_gt_train.txt
     sample_ratios: [1.0]
     shuffle: True
@@ -122,7 +122,7 @@ eval:
   dataset_sink_mode: False
   dataset:
     type: LMDBDataset
-    data_dir: /home/mindocr/lby_spencer/svtr_dataset/validation
+    data_dir: /home/group1/katekong/datasets/data_lmdb_release/validation
     # label_files: /data/ocr_datasets/ic15/word_recognition/rec_gt_train.txt
     sample_ratios: [1.0]
     shuffle: False
