@@ -27,11 +27,12 @@ from mindocr.utils.model_wrapper import NetWithLossWrapper
 from mindocr.utils.train_step_wrapper import TrainOneStepWrapper 
 from mindocr.utils.callbacks import EvalSaveCallback
 from mindocr.utils.seed import set_seed
+from mindocr.utils.param_grouping import create_group_params
 
 # sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 def main(cfg):
     # env init
-    ms.set_context(mode=cfg.system.mode)
+    ms.set_context(mode=cfg.system.mode, device_id=1)
     if cfg.system.distribute:
         init()
         device_num = get_group_size()
@@ -74,7 +75,9 @@ def main(cfg):
     ms.amp.auto_mixed_precision(network, amp_level=cfg.system.amp_level)  
 
     lr_scheduler = create_scheduler(num_batches, **cfg['scheduler'])
-    optimizer = create_optimizer(network.trainable_params(), lr=lr_scheduler, **cfg['optimizer'])
+    WD = cfg.optimizer.weight_decay
+    params = create_group_params(network.trainable_params(), WD, 'svtr', no_weight_decay_params=['beta','gamma','pos_embed','bias'])
+    optimizer = create_optimizer(params, lr=lr_scheduler, **cfg['optimizer'])
     loss_fn = build_loss(cfg.loss.pop('name'), **cfg['loss'])
 
     # wrap train one step cell
