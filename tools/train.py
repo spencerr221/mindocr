@@ -32,7 +32,7 @@ from mindocr.utils.param_grouping import create_group_params
 # sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 def main(cfg):
     # env init
-    ms.set_context(mode=cfg.system.mode, device_id=1)
+    ms.set_context(mode=cfg.system.mode)
     if cfg.system.distribute:
         init()
         device_num = get_group_size()
