@@ -1,6 +1,6 @@
 system:
   mode: 0 # 0 for graph mode, 1 for pynative mode in MindSpore
-  distribute: True
+  distribute: False
   amp_level: 'O0'
   seed: 42
   val_while_train: True
@@ -76,7 +76,7 @@ optimizer:
   nesterov: False
   beta1: 0.9
   beta2: 0.99
-  no_weight_decay_params: ['beta', 'gamma', 'pos_emb', 'bias'] # filter norm and bias params from weight decay
+  no_weight_decay_params: ['norm', 'pos_emb'] # filter norm and bias params from weight decay
   grouping_strategy: 'svtr'
 
 loss_scaler:
@@ -84,7 +84,7 @@ loss_scaler:
   loss_scale: 512.0
   
 train:
-  ckpt_save_dir: /home/mindspore/lby_spencer/mindocr/mindocr/output/rec/0414version
+  ckpt_save_dir: /home/group1/lby_spencer/mindocr/mindocr/output/rec/1804version
   dataset_sink_mode: False
   dataset:
     type: LMDBDataset
