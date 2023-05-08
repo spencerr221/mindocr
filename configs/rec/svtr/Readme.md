@@ -17,7 +17,8 @@ patterns, leading to a multi-grained character component perception. Thus, chara
 <!--- Guideline: If an architecture table/figure is available in the paper, put one here and cite for intuitive illustration. -->
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/26082447/224601239-a569a1d4-4b29-4fa8-804b-6690cb50caef.PNG" width=450 />
+  <img src="https://user-images.githubusercontent.com/83412649/236801293-21467c8d-bec3-4e05-ad03-92b65962a5de.png" width=450 />
+
 </p>
 <p align="center">
   <em> Figure 1. Architecture of SVTR [<a href="#references">1</a>] </em>
