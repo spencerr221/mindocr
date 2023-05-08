@@ -17,7 +17,7 @@ patterns, leading to a multi-grained character component perception. Thus, chara
 <!--- Guideline: If an architecture table/figure is available in the paper, put one here and cite for intuitive illustration. -->
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/83412649/236801293-21467c8d-bec3-4e05-ad03-92b65962a5de.png" width=450 />
+  <img src="https://user-images.githubusercontent.com/83412649/236801293-21467c8d-bec3-4e05-ad03-92b65962a5de.png" width=750 />
 
 </p>
 <p align="center">
@@ -41,7 +41,7 @@ According to our experiments, the best evaluation results on public benchmark da
 
 | **Model** | **Context**  | **Avg Accuracy** | **Train T.** | **Recipe** | **Download** | 
 | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
-| SVTR (ours)      | V100x4-MS1.9-G | 89.18%    | 6346 s/epoch          | [yaml](https://github.com/mindspore-lab/mindocr/blob/main/configs/rec/crnn/crnn_vgg7.yaml)     | [ckpt](https://download.mindspore.cn/toolkits/mindocr/crnn/crnn_vgg7-ea7e996c.ckpt)
+| SVTR (ours)      | V100x4-MS1.9-G | 89.18%    | 6346 s/epoch          | [yaml](https://github.com/spencerr221/mindocr/blob/gpu_merge_main/configs/rec/svtr/args.yaml)     | [ckpt](https://github.com/spencerr221/mindocr/blob/gpu_merge_main/configs/rec/svtr/best.ckpt)
 | SVTR (PaddleOCR) | -              | 90.13%           | -                      | -                                                                                              | -                                                                                          |
 
 <details open>
